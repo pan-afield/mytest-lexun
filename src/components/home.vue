@@ -39,7 +39,7 @@
     <div class="nick" style="height: 500px; width: 100px; background: #749">
       peter
     </div>
-    <input class="asd" type="text" /><br />
+    <input class="asd" type="text" v-focus /><br />
     <form action="" @submit.prevent="submitForm()">
       <input
         type="checkbox"
@@ -59,12 +59,24 @@
     </form>
     <h3>{{ checkedArr }}</h3>
     <div id="qrcode"></div>
+    <ul>
+      <li v-for="(item, index) in arrList" :key="index">
+        {{ item | strFilter }}
+      </li>
+      <li>{{ arrList | numberFilter }}</li>
+    </ul>
   </div>
 </template>
 
 <script>
 import QRCode from "qrcodejs2";
 export default {
+  filters: {
+    numberFilter: function (value) {
+      if (!value) return "";
+      return value.toString() + "i";
+    },
+  },
   computed: {
     alass() {
       // console.log(this);
@@ -100,6 +112,7 @@ export default {
         { name: "Math", score: 90 },
         { name: "History", score: 70 },
       ],
+      arrList: [1, 2, 3, 4, 5],
       checkedArr: ["apple"],
     };
   },
@@ -149,6 +162,11 @@ export default {
     },
   },
   created() {
+    console.log(this.arrList);
+    let ab = this.arrList.filter((item, index) => {
+      return item > 3;
+    });
+    console.log(ab);
     let a1 = [1, 2, 3, 4, 5];
     let a2 = [2, 5];
     let a3 = [...a1, ...a2];
@@ -210,7 +228,7 @@ export default {
   background-color: rgba(0, 0, 0, 0.6);
   z-index: 888;
 }
-.oopp{
+.oopp {
   position: sticky;
   top: 20px;
   z-index: 100;

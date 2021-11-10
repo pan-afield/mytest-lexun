@@ -16,7 +16,11 @@
   </div>
 </template>
 
-
+插槽：在当前组件的子组件中可以插入HTML结构。
+作用域插槽可以让我们在当前组件调用到子组件的变量。
+使用场景：灵活地在当前组件的子组件中插入HTML结构，
+当一个子组件在很多地方都有用到，但只有一小块区域有结构上的不同，
+那么可以将这一块不同的地方定义为插槽。
 <script>
 import slotTips from "./slotTips.vue";
 export default {
